@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/*Esta tipografia toca cambiarla y cargarla al proyecto */
+@font-face {
+    font-family: 'Vina';
+    src: url(VinaSans-Regular.ttf);
+}
+
+html {
+    font-size: 16px;
+    font-family: 'Vina', Arial, Helvetica, sans-serif;
+    line-height: 1.2;
+}
+
+header {
+    padding: 1rem 1rem 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 1rem;
+    font-weight: 400;
+    font-variation-settings: 'wght' 700;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+}
+
+a nav {
+    color: currentColor;
+    text-underline-offset: 2px;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    width: 100%;
+
+    cursor: e-resize;
+
+    padding: 1rem 1rem;
+}
+
+img {
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+figure {
+    width: 100%;
+    padding: 0;
+}
+
+figcaption {
+    max-width: 10rem;
+    margin: 0.25rem 0 0 0;
+}
