@@ -23,9 +23,9 @@ header {
 }
 
 h1 {
-    font-size: 1rem;
-    font-weight: 400;
-    font-variation-settings: 'wght' 700;
+    font-size: 8rem;
+    font-weight: 500;
+    font-variation-settings: 'wght' 400;
 }
 
 nav {
@@ -40,25 +40,38 @@ a nav {
 
 section {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    grid-template-columns: 4fr 5fr 2fr 0fr 0fr 0fr;
+    gap: 0;
 
     width: 100%;
 
     cursor: e-resize;
 
-    padding: 1rem 1rem;
+    padding: 1rem 0.5rem;
+
+    transition: grid-template-columns 0.7s;
 }
 
-img {
+section div {
+    overflow: hidden;
+
+    opacity: 1;
+    transition: opacity 0.7s;
+}
+
+section div.hide {
+    opacity: 0;
+}
+
+img {
     max-width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4/5;
     object-fit: cover;
 }
 
 figure {
     width: 100%;
-    padding: 0;
+    padding: 0 0.5rem;
 }
 
 figcaption {
