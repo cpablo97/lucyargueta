@@ -7,12 +7,13 @@
 @font-face {
     font-family: 'Archivo';
     src: url(ArchivoBlack-Regular.ttf);
+    size-adjust: 105%;
 }
 
 html {
     font-size: 16px;
     font-family: 'Archivo', Arial, Helvetica, sans-serif;
-    line-height: 1.2;
+    line-height: 0.9;
 }
 
 body {
@@ -28,8 +29,8 @@ header {
 }
 
 h1 {
-    color: #FC0301;
-    font-size: 8rem;
+    color: #FF2200;
+    font-size: 12rem;
     font-weight: 500;
     font-variation-settings: 'wght' 400;
     letter-spacing: -0.05em;
@@ -84,6 +85,7 @@ figure {
 figcaption {
     max-width: 10rem;
     margin: 0.25rem 0 0 0;
+    color: white;
 }
 
 .background-blobs {
@@ -94,13 +96,14 @@ figcaption {
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .blob {
     position: absolute;
-    background: red;
+    background: #FF2200;
     border-radius: 100%;
     filter: blur(100px);
     opacity: 0.9;
-    transition: transform 3s ease-in-out;
+    transition: transform 3s ease-in-out, z-index 0.5s ease;
 }
