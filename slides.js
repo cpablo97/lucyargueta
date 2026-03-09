@@ -37,3 +37,29 @@ section.addEventListener('click', nextSlide)
 
 timeout = setTimeout(nextSlide, 2000)
 
+// Random blob movement
+const blobs = document.querySelectorAll('.blob');
+
+blobs.forEach(blob => {
+    // Set random initial size
+    const size = Math.random() * 300 + 200; // 200-500px
+    blob.style.width = size + 'px';
+    blob.style.height = size + 'px';
+    
+    // Set random initial position
+    moveBlob(blob);
+});
+
+function moveBlob(blob) {
+    const x = Math.random() * (window.innerWidth - parseFloat(blob.style.width));
+    const y = Math.random() * (window.innerHeight - parseFloat(blob.style.height));
+    blob.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// Move blobs every 3 seconds
+setInterval(() => {
+    blobs.forEach(blob => {
+        moveBlob(blob);
+    });
+}, 3000);
+
