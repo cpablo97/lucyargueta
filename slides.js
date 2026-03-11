@@ -1,5 +1,5 @@
-const section = document.querySelector('section')
-const slides = section.querySelectorAll('div')
+const section = document.querySelector('.fotos')
+const slides = section.querySelectorAll('.fotos div')
 
 let index = 0
 

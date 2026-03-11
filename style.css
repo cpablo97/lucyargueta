@@ -24,8 +24,7 @@ body {
 header {
     padding: 1rem 1rem 0 1rem;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 h1 {
@@ -36,17 +35,26 @@ h1 {
     letter-spacing: -0.05em;
 }
 
-nav {
+.menu nav{
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
 }
+.menu nav a{
+    color: #000000;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.menu {
+    padding: 1rem 1rem 3rem 1rem;
+}   
 
 a nav {
     color: currentColor;
     text-underline-offset: 2px;
 }
 
-section {
+.fotos {
     display: grid;
     grid-template-columns: 4fr 5fr 2fr 0fr 0fr 0fr;
     gap: 0;
@@ -60,14 +68,14 @@ section {
     transition: grid-template-columns 0.7s;
 }
 
-section div {
+.fotos div {
     overflow: hidden;
 
     opacity: 1;
     transition: opacity 0.7s;
 }
 
-section div.hide {
+.fotos div.hide {
     opacity: 0;
 }
 
