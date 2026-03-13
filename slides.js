@@ -5,13 +5,15 @@ let index = 0
 
 let timeout
 
+let paused = false
+
 let pattern = [
-    [4, 5, 2, 0, 0, 0],
-    [4, 5, 2, 2, 0, 0],
+    [4, 3, 5, 0, 0, 0],
+    [4, 3, 5, 2, 0, 0],
     [0, 3, 2, 3, 0, 0],
     [0, 2, 1, 2, 1, 0],
-    [0, 0, 2, 3, 4, 5],
-    [0, 0, 0, 5, 3, 2],
+    [0, 0, 5, 3, 4, 2],
+    [0, 0, 0, 3, 5, 2],
 ]
 
 const nextSlide = () => {
@@ -30,10 +32,22 @@ const nextSlide = () => {
         }
     })
     clearTimeout(timeout)
-    timeout = setTimeout(nextSlide, 2000)
+    if (!paused) {
+        timeout = setTimeout(nextSlide, 2000)
+    }
 }
 
-section.addEventListener('click', nextSlide)
+section.addEventListener('mouseenter', () => {
+    paused = true
+    clearTimeout(timeout)
+})
+
+section.addEventListener('mouseleave', () => {
+    paused = false
+    timeout = setTimeout(nextSlide, 2000)
+})
+
+document.getElementById('next-slide').addEventListener('click', nextSlide)
 
 timeout = setTimeout(nextSlide, 2000)
 
