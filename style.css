@@ -100,9 +100,9 @@ a nav {
   transition: opacity 0.9s;
 }
 
-/*.fotos div.hide {
+.fotos div.hide {
   opacity: 0;
-}*/
+}
 
 img {
   max-width: 100%;
