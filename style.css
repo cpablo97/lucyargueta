@@ -60,7 +60,7 @@ h1 {
   cursor: pointer;
   border-bottom: solid 2px #000000;
   padding: 0;
-  position: absolute;
+  position: fixed;
   right: 5px;
   bottom: 5px;
   z-index: 10;
@@ -99,10 +99,6 @@ a nav {
   opacity: 1;
   transition: opacity 0.9s;
 }
-
-/*.fotos div.hide {
-  opacity: 0;
-}*/
 
 img {
   max-width: 100%;
@@ -178,6 +174,12 @@ figcaption {
   display: grid;
   grid-auto-rows: 1fr min-content;
   z-index: 2;
+}
+
+footer {
+  padding: 20rem;
+  display: flex;
+  justify-content: center;
 }
 
 .background-blobs {
