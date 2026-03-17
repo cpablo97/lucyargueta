@@ -1,0 +1,294 @@
+/* ============================================================
+   project.css — Styles for individual project internal pages
+   This file is standalone: do NOT link it from index.html
+   ============================================================ */
+
+/* ---- Design tokens (mirrors main site palette) ------------ */
+:root {
+  --color-accent:     #ff2200;
+  --color-black:      #000000;
+  --color-white:      #ffffff;
+  --font-main:        "Archivo", Arial, Helvetica, sans-serif;
+  --gutter:           1rem;
+  --gutter-sm:        0.5rem;
+  --transition-fast:  0.3s ease;
+  --transition-slow:  0.9s ease;
+}
+
+/* ---- Reset ------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Archivo";
+  src: url(../ArchivoBlack-Regular.ttf);
+  size-adjust: 105%;
+}
+
+html {
+  font-size: 16px;
+  font-family: var(--font-main);
+  line-height: 0.9;
+}
+
+body {
+  background-color: var(--color-white);
+}
+
+/* ---- Background blobs (same animated aesthetic as main) --- */
+.background-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  background: var(--color-accent);
+  border-radius: 100%;
+  filter: blur(100px);
+  opacity: 0.9;
+  transition: transform 3s ease-in-out;
+}
+
+/* ---- Project header --------------------------------------- */
+/*
+  Structure:
+  <header class="project-header">
+    <a class="project-back" href="../index.html">← LUCY ARGUETA</a>
+    <nav class="project-header-nav">
+      <a href="#">A-Z</a>
+      <a href="#">Sobre mí</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+*/
+.project-header {
+  padding: var(--gutter);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.project-back {
+  color: var(--color-black);
+  font-size: 2rem;
+  text-decoration: none;
+  border-bottom: solid 2px var(--color-black);
+  letter-spacing: -0.03em;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-back:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.project-header-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.project-header-nav a {
+  color: var(--color-black);
+  font-size: 1.5rem;
+  text-decoration: none;
+  border-bottom: solid 2px var(--color-black);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-header-nav a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ---- Project hero ----------------------------------------- */
+/*
+  Structure:
+  <section class="project-hero">
+    <img src="../assets/imagen.jpg" alt="Nombre del proyecto" />
+  </section>
+*/
+.project-hero {
+  width: 100%;
+  padding: var(--gutter-sm) var(--gutter);
+}
+
+.project-hero img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---- Project info ----------------------------------------- */
+/*
+  Structure:
+  <section class="project-info">
+    <div class="project-info-main">
+      <h1 class="project-title">Nombre del proyecto</h1>
+      <p class="project-description">Descripción del proyecto...</p>
+    </div>
+    <aside class="project-meta">
+      <dl>
+        <dt>Categoría</dt><dd>Branding</dd>
+        <dt>Año</dt><dd>2025</dd>
+        <dt>Cliente</dt><dd>Cliente</dd>
+      </dl>
+    </aside>
+  </section>
+*/
+.project-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+  padding: 2rem var(--gutter);
+  align-items: start;
+}
+
+.project-title {
+  font-size: 4rem;
+  color: var(--color-black);
+  letter-spacing: -0.05em;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-black);
+  max-width: 60ch;
+}
+
+.project-meta dt {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+}
+
+.project-meta dd {
+  font-size: 1.25rem;
+  color: var(--color-black);
+}
+
+/* ---- Project gallery -------------------------------------- */
+/*
+  Structure:
+  <section class="project-gallery">
+    <figure class="gallery-item">
+      <img src="../assets/img.jpg" alt="..." />
+      <figcaption>Descripción opcional</figcaption>
+    </figure>
+    ...
+  </section>
+*/
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--gutter-sm);
+  padding: var(--gutter);
+}
+
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+.gallery-item figcaption {
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  margin-top: var(--gutter-sm);
+}
+
+/* ---- Project navigation (prev / next) --------------------- */
+/*
+  Structure:
+  <nav class="project-nav">
+    <a class="project-nav-prev" href="proyecto-N.html">← Proyecto anterior</a>
+    <a class="project-nav-next" href="proyecto-N.html">Siguiente proyecto →</a>
+  </nav>
+*/
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 4rem var(--gutter) 2rem;
+  border-top: solid 1px var(--color-black);
+  margin-top: 2rem;
+}
+
+.project-nav a {
+  color: var(--color-black);
+  font-size: 1.5rem;
+  text-decoration: none;
+  border-bottom: solid 2px var(--color-black);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-nav a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ---- Footer ----------------------------------------------- */
+.project-footer {
+  padding: 4rem var(--gutter);
+  display: flex;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--color-black);
+}
+
+/* ---- Responsive ------------------------------------------- */
+@media (max-width: 768px) {
+  .project-back {
+    font-size: 1.25rem;
+  }
+
+  .project-header-nav {
+    gap: 1rem;
+  }
+
+  .project-header-nav a {
+    font-size: 1rem;
+  }
+
+  .project-title {
+    font-size: 2.5rem;
+  }
+
+  .project-info {
+    grid-template-columns: 1fr;
+  }
+
+  .project-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .project-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

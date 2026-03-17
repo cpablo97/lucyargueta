@@ -16,21 +16,14 @@ let pattern = [
     [0, 0, 0, 3, 5, 2],
 ]
 
+
 const nextSlide = () => {
-    index += 1
-    index %= pattern.length
+    index = (index + 1) % pattern.length
+    const nextPattern = pattern[index]
 
-    section.style.gridTemplateColumns = pattern[index].map((p) => {
-        return `${p}fr`
-    }).join(' ')
+    section.style.gridTemplateColumns = nextPattern.map(p => `${p}fr`).join(' ')
 
-    slides.forEach((slide, slideIndex) => {
-        if(pattern[index][slideIndex] === 0) {
-            slide.classList.add("hide")
-        } else {
-            slide.classList.remove("hide")
-        }
-    })
+
     clearTimeout(timeout)
     if (!paused) {
         timeout = setTimeout(nextSlide, 2000)

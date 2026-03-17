@@ -82,8 +82,8 @@ a nav {
 
 .fotos {
   display: grid;
-  grid-template-columns: 4fr 5fr 2fr 0fr 0fr 0fr;
-  gap: 0;
+  grid-template-columns: 4fr 2fr 5fr 0fr 0fr 0fr;
+  gap: 0.5rem;
 
   width: 100%;
 
@@ -94,33 +94,17 @@ a nav {
 }
 
 .fotos div {
-  overflow: hidden;
-
-  opacity: 1;
-  transition: opacity 0.9s;
-}
-
-img {
-  max-width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-}
-
-figure {
   width: 100%;
-  padding: 0 0.5rem;
+
+  overflow: hidden;
+  opacity: 1;
 }
+
 
 figcaption {
   max-width: 10rem;
   margin: 0.25rem 0 0 0;
   color: white;
-}
-
-.card-grid {
-  display: grid;
-  grid-auto-rows: min-content;
-  grid-template-columns: repeat(3, 1fr);
 }
 
 .card-project {
@@ -130,7 +114,7 @@ figcaption {
   position: relative;
 }
 
-.card-project:hover::before {
+.card-project::before {
   content: "";
   position: absolute;
   top: 0;
@@ -139,6 +123,12 @@ figcaption {
   height: 100%;
   background-color: #ff2200;
   z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card-project:hover::before {
+  opacity: 1;
 }
 
 .card-link {
@@ -157,6 +147,12 @@ figcaption {
   height: 100%;
   display: block;
   overflow: hidden;
+}
+
+.card-content img{
+  max-width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
 }
 
 .card-name {
@@ -202,4 +198,11 @@ footer {
   transition:
     transform 3s ease-in-out,
     z-index 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .fotos {
+    grid-template-columns: 1fr;
+    aspect-ratio: auto;
+  }
 }
