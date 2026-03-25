@@ -1,13 +1,14 @@
 const section = document.querySelector('.fotos')
-const slides = section.querySelectorAll('.fotos div')
+
+const isMobile = () => window.matchMedia('(max-width: 767px)').matches
+
+// ---- Desktop: animated grid ---------------------------------
 
 let index = 0
-
 let timeout
-
 let paused = false
 
-let pattern = [
+const pattern = [
     [4, 2, 5, 0, 0, 0],
     [4, 3, 5, 2, 0, 0],
     [0, 3, 2, 3, 0, 0],
@@ -16,57 +17,98 @@ let pattern = [
     [0, 0, 0, 3, 5, 2],
 ]
 
-
-const nextSlide = () => {
+const nextGridSlide = () => {
     index = (index + 1) % pattern.length
-    const nextPattern = pattern[index]
-
-    section.style.gridTemplateColumns = nextPattern.map(p => `${p}fr`).join(' ')
-
-
+    section.style.gridTemplateColumns = pattern[index].map(p => `${p}fr`).join(' ')
     clearTimeout(timeout)
     if (!paused) {
-        timeout = setTimeout(nextSlide, 2000)
+        timeout = setTimeout(nextGridSlide, 2000)
     }
 }
 
-section.addEventListener('mouseenter', () => {
+const pauseAnimation = () => {
     paused = true
     clearTimeout(timeout)
-})
-
-section.addEventListener('mouseleave', () => {
-    paused = false
-    timeout = setTimeout(nextSlide, 2000)
-})
-
-document.getElementById('next-slide').addEventListener('click', nextSlide)
-
-timeout = setTimeout(nextSlide, 2000)
-
-// Random blob movement
-const blobs = document.querySelectorAll('.blob');
-
-blobs.forEach(blob => {
-    // Set random initial size
-    const size = Math.random() * 300 + 200; // 200-500px
-    blob.style.width = size + 'px';
-    blob.style.height = size + 'px';
-    
-    // Set random initial position
-    moveBlob(blob);
-});
-
-function moveBlob(blob) {
-    const x = Math.random() * (window.innerWidth - parseFloat(blob.style.width));
-    const y = Math.random() * (window.innerHeight - parseFloat(blob.style.height));
-    blob.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-// Move blobs every 3 seconds
-setInterval(() => {
-    blobs.forEach(blob => {
-        moveBlob(blob);
-    });
-}, 3000);
+const resumeAnimation = () => {
+    paused = false
+    timeout = setTimeout(nextGridSlide, 2000)
+}
 
+const startDesktopAnimation = () => {
+    clearTimeout(timeout)
+    section.addEventListener('mouseenter', pauseAnimation)
+    section.addEventListener('mouseleave', resumeAnimation)
+    if (!paused) {
+        timeout = setTimeout(nextGridSlide, 2000)
+    }
+}
+
+const stopDesktopAnimation = () => {
+    clearTimeout(timeout)
+    paused = false
+    section.style.gridTemplateColumns = ''
+}
+
+// ---- Mobile: scroll snap slider -----------------------------
+
+const scrollToNextCard = () => {
+    const cards = Array.from(section.querySelectorAll('.fotos > div'))
+    const sectionLeft = section.getBoundingClientRect().left
+
+    for (const card of cards) {
+        const cardLeft = card.getBoundingClientRect().left
+        if (cardLeft > sectionLeft + 10) {
+            section.scrollBy({ left: cardLeft - sectionLeft, behavior: 'smooth' })
+            return
+        }
+    }
+    // Reached the end — loop back to start
+    section.scrollTo({ left: 0, behavior: 'smooth' })
+}
+
+// ---- Button: grid on desktop, scroll on mobile --------------
+
+document.getElementById('next-slide').addEventListener('click', () => {
+    if (isMobile()) {
+        scrollToNextCard()
+    } else {
+        nextGridSlide()
+    }
+})
+
+// ---- Init & handle resize -----------------------------------
+
+const init = () => {
+    if (isMobile()) {
+        stopDesktopAnimation()
+    } else {
+        startDesktopAnimation()
+    }
+}
+
+window.matchMedia('(max-width: 767px)').addEventListener('change', init)
+
+init()
+
+// ---- Background blob animation ------------------------------
+
+const blobs = document.querySelectorAll('.blob')
+
+blobs.forEach(blob => {
+    const size = Math.random() * 300 + 200
+    blob.style.width = size + 'px'
+    blob.style.height = size + 'px'
+    moveBlob(blob)
+})
+
+function moveBlob(blob) {
+    const x = Math.random() * (window.innerWidth - parseFloat(blob.style.width))
+    const y = Math.random() * (window.innerHeight - parseFloat(blob.style.height))
+    blob.style.transform = `translate(${x}px, ${y}px)`
+}
+
+setInterval(() => {
+    blobs.forEach(moveBlob)
+}, 3000)
