@@ -22,14 +22,14 @@ body {
 }
 
 .page-container {
-  max-width: 1320px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
 header {
   padding: 1rem 1rem 0 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   container-type: inline-size;
 }
 
@@ -71,7 +71,6 @@ a nav {
 .fotos {
   display: grid;
   grid-template-columns: 4fr 2fr 5fr 0fr 0fr 0fr;
-  gap: 0.5rem;
 
   width: 100%;
 
@@ -99,6 +98,7 @@ figcaption {
   overflow: hidden;
   position: relative;
   container-type: inline-size;
+  padding: 0 1rem;
 }
 
 .card-project::before {
@@ -112,7 +112,6 @@ figcaption {
   z-index: 1;
   opacity: 0;
   transition: opacity 0.3s;
-  
 }
 
 .card-project:hover::before {
@@ -141,6 +140,7 @@ figcaption {
   max-width: 100%;
   aspect-ratio: 4/5;
   object-fit: cover;
+  overflow: visible;
 }
 
 .card-name {
@@ -205,14 +205,14 @@ footer {
 /* ---- Small desktop / tablet landscape (≤1279px) ----------- */
 @media (max-width: 1279px) {
   h1 {
-    font-size: 9rem;
+    font-size: 10cqh;
   }
 }
 
 /* ---- Tablet portrait (≤1023px) ---------------------------- */
 @media (max-width: 1023px) {
   h1 {
-    font-size: 6rem;
+    font-size: 10cqh;
   }
 
   .menu {
