@@ -17,21 +17,29 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #f8f3ec;
+ 
+}
+
+.page-container {
+  max-width: 1320px;
+  margin: 0 auto;
 }
 
 header {
   padding: 1rem 1rem 0 1rem;
   display: flex;
   justify-content: center;
+  container-type: inline-size;
 }
 
 h1 {
   color: #000000;
-  font-size: 12rem;
+  font-size: 10cqh;
   font-weight: 500;
   font-variation-settings: "wght" 400;
   letter-spacing: -0.05em;
+  
 }
 
 .menu nav {
@@ -51,28 +59,8 @@ h1 {
   border-bottom: solid 2px #ff2200;
 }
 
-#next-slide {
-  background: none;
-  border: none;
-  color: #000000;
-  font-size: 1.5rem;
-  font-family: inherit;
-  cursor: pointer;
-  border-bottom: solid 2px #000000;
-  padding: 0;
-  position: fixed;
-  right: 5px;
-  bottom: 5px;
-  z-index: 10;
-}
-
-#next-slide:hover {
-  color: #ff2200;
-  border-bottom: solid 2px #ff2200;
-}
-
 .menu {
-  padding: 1rem 1rem 3rem 1rem;
+  padding: 3rem 1rem 3rem 1rem;
 }
 
 a nav {
@@ -87,8 +75,6 @@ a nav {
 
   width: 100%;
 
-  padding: 1rem 0.5rem;
-
   transition: grid-template-columns 0.9s;
   aspect-ratio: 8 / 5;
 }
@@ -102,9 +88,9 @@ a nav {
 
 
 figcaption {
-  max-width: 10rem;
+  max-width: 100%;
   margin: 0.25rem 0 0 0;
-  color: white;
+  isolation: isolate;
 }
 
 .card-project {
@@ -112,6 +98,7 @@ figcaption {
   display: grid;
   overflow: hidden;
   position: relative;
+  container-type: inline-size;
 }
 
 .card-project::before {
@@ -125,6 +112,7 @@ figcaption {
   z-index: 1;
   opacity: 0;
   transition: opacity 0.3s;
+  
 }
 
 .card-project:hover::before {
@@ -156,8 +144,12 @@ figcaption {
 }
 
 .card-name {
-    font-size: 1.6rem;
+    font-size: 10cqw;
+    text-wrap: pretty;
+    text-transform: uppercase;
+    font-weight: 700;
     color: #ff2200;
+    
 }
 
 .card-project:hover .card-name {
@@ -165,9 +157,9 @@ figcaption {
 }
 
 .card-caption {
-  padding: var(--gutter-small);
+  padding: 10px;
   grid-area: 1 / 1;
-  display: grid;
+  /*display: grid;*/
   grid-auto-rows: 1fr min-content;
   z-index: 2;
 }
@@ -176,6 +168,7 @@ footer {
   padding: 8rem;
   display: flex;
   justify-content: center;
+  box-shadow: inset 0px 7px 4px -4px rgba(0, 0, 0, 0.15);
 }
 
 .background-blobs {

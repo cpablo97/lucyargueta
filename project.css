@@ -33,30 +33,11 @@ html {
   line-height: 0.9;
 }
 
-body {
+/*body {
   background-color: var(--color-white);
-}
+}*/
 
-/* ---- Background blobs (same animated aesthetic as main) --- */
-.background-blobs {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
 
-.blob {
-  position: absolute;
-  background: var(--color-accent);
-  border-radius: 100%;
-  filter: blur(100px);
-  opacity: 0.9;
-  transition: transform 3s ease-in-out;
-}
 
 /* ---- Project header --------------------------------------- */
 /*
@@ -252,6 +233,7 @@ body {
   border-bottom-color: var(--color-accent);
 }
 
+
 /* ---- Footer ----------------------------------------------- */
 .project-footer {
   padding: 4rem var(--gutter);
@@ -259,6 +241,27 @@ body {
   justify-content: center;
   font-size: 0.875rem;
   color: var(--color-black);
+}
+
+/* ---- Background blobs (same animated aesthetic as main) --- */
+.background-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  background: var(--color-accent);
+  border-radius: 100%;
+  filter: blur(100px);
+  opacity: 0.9;
+  transition: transform 3s ease-in-out;
 }
 
 /* ---- Responsive -------------------------------------------

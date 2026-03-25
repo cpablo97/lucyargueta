@@ -18,6 +18,7 @@ const pattern = [
 ]
 
 const nextGridSlide = () => {
+    if (!section) return
     index = (index + 1) % pattern.length
     section.style.gridTemplateColumns = pattern[index].map(p => `${p}fr`).join(' ')
     clearTimeout(timeout)
@@ -37,6 +38,7 @@ const resumeAnimation = () => {
 }
 
 const startDesktopAnimation = () => {
+    if (!section) return
     clearTimeout(timeout)
     section.addEventListener('mouseenter', pauseAnimation)
     section.addEventListener('mouseleave', resumeAnimation)
@@ -46,6 +48,7 @@ const startDesktopAnimation = () => {
 }
 
 const stopDesktopAnimation = () => {
+    if (!section) return
     clearTimeout(timeout)
     paused = false
     section.style.gridTemplateColumns = ''
@@ -70,13 +73,7 @@ const scrollToNextCard = () => {
 
 // ---- Button: grid on desktop, scroll on mobile --------------
 
-document.getElementById('next-slide').addEventListener('click', () => {
-    if (isMobile()) {
-        scrollToNextCard()
-    } else {
-        nextGridSlide()
-    }
-})
+
 
 // ---- Init & handle resize -----------------------------------
 
